@@ -20,16 +20,18 @@ jQuery(document).ready(function($){
       //make a new category under the categoryContainer and give it the image of the first thing in the respective list in piclist
       categories.push($('<li class="category"> Category '+(cat_index+1)+'</li>'));
       $(".category:nth-of-type("+(cat_index+1)+")").css("background","url("+baseurl + piclist[cat_index][1][0]+")").css("background-size","cover");
-      categoryContainer.append(categories[cat_index]);
+      categories[cat_index].appendTo("ul.categoryContainer");
 
       //make the thumbnail container for the thumbnails that will appear if the use clicks on the category
-      thumbnailContainers.push($('<ul class+"thumbnailContainer">'));
+      thumbnailContainers.push($('<ul class="thumbnailContainer">'));
+      thumbnailContainers[cat_index].appendTo("li.category");
       for (var image_index in piclist[cat_index]) {
         //might need to fix to get the right thumbnails because of scoping, add in which category from the html
         var thumbnail = $('<li class="thumbnail"> Thumbnail '+(image_index+1)+'</li>');
         $(".thumbnail:nth-of-type("+(image_index+1)+")").css("background","url("+baseurl + piclist[cat_index][image_index][1]+")").css("background-size","cover");
         //$(".thumbnail:nth-of-type("+(image_index+1)+")").css("background","url("baseurl + piclist[cat_index][image_index][1]")").css("background-size","cover");
-        thumbnailContainers[cat_index].append(thumbnail);
+        //thumbnailContainers[cat_index].append(thumbnail);
+        thumbnail.appendTo("ul.thumbnailContainer")
       }
 
       //add the click handler for each category to make the respective set of thumbnails appear
