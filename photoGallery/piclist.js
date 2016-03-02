@@ -87,7 +87,7 @@ var setUp = function() {
     } else {
         var startSlideshow = setInterval(function(){
               $(".viewer").trigger("click");
-        }, 1000);
+        }, 3000);
     }
   });
 
