@@ -1,5 +1,5 @@
 "use strict";
-jQuery(document).ready(function($){
+// jQuery(document).ready(function($){
   // for (var cat_index in piclist) {
   //   var category = piclist[cat_index];
   //   for (var image_index in category) {
@@ -76,11 +76,11 @@ jQuery(document).ready(function($){
                                   });
                               });
                               $('.exit').show(0).click(function(){
-                                //   $(this).hide(0);
-                                //   $('.slideshow').hide(0);
-                                //   $('.viewer').hide(0);
-                                //   window.clearInterval(startSlideshow);
-                                reload();
+                                  $(this).hide(0);
+                                  $('.slideshow').hide(0);
+                                  $('.viewer').hide(0);
+                                  window.clearInterval(startSlideshow);
+                                //document.location.reload();
                               });
                               $('.slideshow').show(0);
                               console.log(index +" "+ image_index);
@@ -93,8 +93,5 @@ jQuery(document).ready(function($){
       });
     }
 
-  setUp();
 
-
-  return false;
-});
+// });
