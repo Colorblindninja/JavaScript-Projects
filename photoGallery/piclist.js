@@ -1,5 +1,8 @@
 var apiKey = "4459a38b42ed50d49a0126050230d03a";
 var erinID = "126524829@N04";
+var whichSets = [0,1,2,4];
+//var erinID = "65878896@N04";
+//var whichSets = [0,3,2,4];
 var loaded1 = false;
 var loaded2 = false;
 var loaded3 = false;
@@ -23,7 +26,8 @@ var checkLoaded = function() {
     return false;
 }
 var photoSet = $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key="+apiKey+"&user_id="+erinID+"&format=json&nojsoncallback=1", function(data){
-    var firstSet = $.getJSON(base+data.photosets.photoset[0].id+End, function(firstData){
+    var firstSet = $.getJSON(base+data.photosets.photoset[whichSets[0]].id+End, function(firstData){
+piclist[0].push([start+firstData.photoset.photo[5].farm+theMid+firstData.photoset.photo[5].server+'\/'+firstData.photoset.photo[5].id+"\_"+firstData.photoset.photo[5].secret+"\_"+"b.jpg", start+firstData.photoset.photo[5].farm+theMid+firstData.photoset.photo[5].server+'\/'+firstData.photoset.photo[5].id+"\_"+firstData.photoset.photo[5].secret+"\_"+"t.jpg"]);
         for (var i in firstData.photoset.photo) {
             piclist[0].push([start+firstData.photoset.photo[i].farm+theMid+firstData.photoset.photo[i].server+'\/'+firstData.photoset.photo[i].id+"\_"+firstData.photoset.photo[i].secret+"\_"+"b.jpg", start+firstData.photoset.photo[i].farm+theMid+firstData.photoset.photo[i].server+'\/'+firstData.photoset.photo[i].id+"\_"+firstData.photoset.photo[i].secret+"\_"+"t.jpg"]);
         }
@@ -33,7 +37,8 @@ var photoSet = $.getJSON("https://api.flickr.com/services/rest/?method=flickr.ph
             setUp();
         }
     });
-    var secondSet = $.getJSON(base+data.photosets.photoset[1].id+End, function(firstData){
+    var secondSet = $.getJSON(base+data.photosets.photoset[whichSets[1]].id+End, function(firstData){
+piclist[1].push([start+firstData.photoset.photo[2].farm+theMid+firstData.photoset.photo[2].server+'\/'+firstData.photoset.photo[2].id+"\_"+firstData.photoset.photo[2].secret+"\_"+"b.jpg", start+firstData.photoset.photo[2].farm+theMid+firstData.photoset.photo[2].server+'\/'+firstData.photoset.photo[2].id+"\_"+firstData.photoset.photo[2].secret+"\_"+"t.jpg"]);
         for (var i in firstData.photoset.photo) {
             piclist[1].push([start+firstData.photoset.photo[i].farm+theMid+firstData.photoset.photo[i].server+'\/'+firstData.photoset.photo[i].id+"\_"+firstData.photoset.photo[i].secret+"\_"+"b.jpg", start+firstData.photoset.photo[i].farm+theMid+firstData.photoset.photo[i].server+'\/'+firstData.photoset.photo[i].id+"\_"+firstData.photoset.photo[i].secret+"\_"+"t.jpg"]);
         }
@@ -43,7 +48,8 @@ var photoSet = $.getJSON("https://api.flickr.com/services/rest/?method=flickr.ph
             setUp();
         }
     });
-    var ThirdSet = $.getJSON(base+data.photosets.photoset[2].id+End, function(firstData){
+    var ThirdSet = $.getJSON(base+data.photosets.photoset[whichSets[2]].id+End, function(firstData){
+piclist[2].push([start+firstData.photoset.photo[1].farm+theMid+firstData.photoset.photo[1].server+'\/'+firstData.photoset.photo[1].id+"\_"+firstData.photoset.photo[1].secret+"\_"+"b.jpg", start+firstData.photoset.photo[1].farm+theMid+firstData.photoset.photo[1].server+'\/'+firstData.photoset.photo[1].id+"\_"+firstData.photoset.photo[1].secret+"\_"+"t.jpg"]);
         for (var i in firstData.photoset.photo) {
             piclist[2].push([start+firstData.photoset.photo[i].farm+theMid+firstData.photoset.photo[i].server+'\/'+firstData.photoset.photo[i].id+"\_"+firstData.photoset.photo[i].secret+"\_"+"b.jpg", start+firstData.photoset.photo[i].farm+theMid+firstData.photoset.photo[i].server+'\/'+firstData.photoset.photo[i].id+"\_"+firstData.photoset.photo[i].secret+"\_"+"t.jpg"]);
         }
@@ -53,7 +59,7 @@ var photoSet = $.getJSON("https://api.flickr.com/services/rest/?method=flickr.ph
             setUp();
         }
     });
-    var fourthSet = $.getJSON(base+data.photosets.photoset[4].id+End, function(firstData){
+    var fourthSet = $.getJSON(base+data.photosets.photoset[whichSets[3]].id+End, function(firstData){
         for (var i in firstData.photoset.photo) {
             piclist[3].push([start+firstData.photoset.photo[i].farm+theMid+firstData.photoset.photo[i].server+'\/'+firstData.photoset.photo[i].id+"\_"+firstData.photoset.photo[i].secret+"\_"+"b.jpg", start+firstData.photoset.photo[i].farm+theMid+firstData.photoset.photo[i].server+'\/'+firstData.photoset.photo[i].id+"\_"+firstData.photoset.photo[i].secret+"\_"+"t.jpg"]);
         }
@@ -67,6 +73,7 @@ var photoSet = $.getJSON("https://api.flickr.com/services/rest/?method=flickr.ph
 
 
 setUp();
+var startSlideshow;
 var setUp = function() {
   //$(".category").css("height", (100/piclist.length) + "%");
   var categoryContainer = $(".categoryContainer");
@@ -81,15 +88,12 @@ var setUp = function() {
   $(".viewer").hide(0);
   $(".exit").hide(0);
   $(".slideshow").hide(0);
-  $('.slideshow').click(function(){
-      if (startSlideshow){
-        window.clearInterval(startSlideshow);
-    } else {
-        var startSlideshow = setInterval(function(){
-              $(".viewer").trigger("click");
-        }, 3000);
-    }
-  });
+  // $('.slideshow').click(function(){
+  //     clearInterval(startSlideshow);
+  //     startSlideshow = setInterval(function(){
+  //             $(".viewer").trigger("click");
+  //       }, 3000);
+  //   });
 
 
   $('.category').each(function (index){
@@ -97,7 +101,7 @@ var setUp = function() {
       $(this).attr({
             id: 'Category '+index
         })
-        .css("background", "url("+piclist[index][1][0]+")")
+        .css("background", "url("+piclist[index][0][0]+")")
         .css("background-repeat", "no-repeat")
         .css("background-size", "cover")
         .click(function () {
@@ -117,12 +121,14 @@ var setUp = function() {
                     }
                     $(this).children(".thumbnail").each(function(image_index){
                         $(this).click(function() {
+                            $(".viewer").remove();
                             var img = $('<img src="'+piclist[index][image_index][0]+'" class="viewer">');
                             var counter = 0;
                             var outerCounter = 0;
                             $('body').append(img);
                             $(img).click(function(){
                                 counter++;
+                                clearInterval(startSlideshow);
                                 $(img).fadeOut('fast', function(){
                                     if (((counter+image_index)%piclist[index+outerCounter].length)==0) {
                                         outerCounter++;
@@ -134,11 +140,27 @@ var setUp = function() {
                                     $(img).fadeIn('fast');
                                 });
                             });
+                            $('.slideshow').click(function(){
+                                clearInterval(startSlideshow);
+                                startSlideshow = setInterval(function(){
+                                    counter++;
+                                    $(img).fadeOut('fast', function(){
+                                        if (((counter+image_index)%piclist[index+outerCounter].length)==0) {
+                                            outerCounter++;
+                                            outerCounter = outerCounter %piclist.length;
+                                            counter = 0;
+                                            image_index = 0;
+                                        }
+                                        $(this).attr("src",piclist[(index+outerCounter)][(image_index+counter)%piclist[(index+outerCounter)].length][0]);
+                                        $(img).fadeIn('fast');
+                                    });
+                                }, 2500);
+                              });
                             $('.exit').show(0).click(function(){
                                 $(this).hide(0);
                                 $('.slideshow').hide(0);
                                 $('.viewer').hide(0);
-                                window.clearInterval(startSlideshow);
+                                clearInterval(startSlideshow);
                               //document.location.reload();
                             });
                             $('.slideshow').show(0);
