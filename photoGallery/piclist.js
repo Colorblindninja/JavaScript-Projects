@@ -25,10 +25,14 @@ var checkLoaded = function() {
     }
     return false;
 }
+
+console.log("finding albums");
 var photoSet = $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key="+apiKey+"&user_id="+erinID+"&format=json&nojsoncallback=1", function(data){
+    console.log("found the albums, starting the pics");
     var firstSet = $.getJSON(base+data.photosets.photoset[whichSets[0]].id+End, function(firstData){
 piclist[0].push([start+firstData.photoset.photo[5].farm+theMid+firstData.photoset.photo[5].server+'\/'+firstData.photoset.photo[5].id+"\_"+firstData.photoset.photo[5].secret+"\_"+"b.jpg", start+firstData.photoset.photo[5].farm+theMid+firstData.photoset.photo[5].server+'\/'+firstData.photoset.photo[5].id+"\_"+firstData.photoset.photo[5].secret+"\_"+"t.jpg"]);
         for (var i in firstData.photoset.photo) {
+            console.log("Found album 1");
             piclist[0].push([start+firstData.photoset.photo[i].farm+theMid+firstData.photoset.photo[i].server+'\/'+firstData.photoset.photo[i].id+"\_"+firstData.photoset.photo[i].secret+"\_"+"b.jpg", start+firstData.photoset.photo[i].farm+theMid+firstData.photoset.photo[i].server+'\/'+firstData.photoset.photo[i].id+"\_"+firstData.photoset.photo[i].secret+"\_"+"t.jpg"]);
         }
         console.log(firstData.photoset.photo[i]);
@@ -42,7 +46,7 @@ piclist[1].push([start+firstData.photoset.photo[2].farm+theMid+firstData.photose
         for (var i in firstData.photoset.photo) {
             piclist[1].push([start+firstData.photoset.photo[i].farm+theMid+firstData.photoset.photo[i].server+'\/'+firstData.photoset.photo[i].id+"\_"+firstData.photoset.photo[i].secret+"\_"+"b.jpg", start+firstData.photoset.photo[i].farm+theMid+firstData.photoset.photo[i].server+'\/'+firstData.photoset.photo[i].id+"\_"+firstData.photoset.photo[i].secret+"\_"+"t.jpg"]);
         }
-        console.log(piclist[1][1][0]);
+        // console.log(piclist[1][1][0]);
         loaded2 = true;
         if (checkLoaded()) {
             setUp();
@@ -53,7 +57,7 @@ piclist[2].push([start+firstData.photoset.photo[1].farm+theMid+firstData.photose
         for (var i in firstData.photoset.photo) {
             piclist[2].push([start+firstData.photoset.photo[i].farm+theMid+firstData.photoset.photo[i].server+'\/'+firstData.photoset.photo[i].id+"\_"+firstData.photoset.photo[i].secret+"\_"+"b.jpg", start+firstData.photoset.photo[i].farm+theMid+firstData.photoset.photo[i].server+'\/'+firstData.photoset.photo[i].id+"\_"+firstData.photoset.photo[i].secret+"\_"+"t.jpg"]);
         }
-        console.log(piclist[2][1][0]);
+        // console.log(piclist[2][1][0]);
         loaded3 = true;
         if (checkLoaded()) {
             setUp();
@@ -63,7 +67,7 @@ piclist[2].push([start+firstData.photoset.photo[1].farm+theMid+firstData.photose
         for (var i in firstData.photoset.photo) {
             piclist[3].push([start+firstData.photoset.photo[i].farm+theMid+firstData.photoset.photo[i].server+'\/'+firstData.photoset.photo[i].id+"\_"+firstData.photoset.photo[i].secret+"\_"+"b.jpg", start+firstData.photoset.photo[i].farm+theMid+firstData.photoset.photo[i].server+'\/'+firstData.photoset.photo[i].id+"\_"+firstData.photoset.photo[i].secret+"\_"+"t.jpg"]);
         }
-        console.log(piclist[3][1][0]);
+        // console.log(piclist[3][1][0]);
         loaded4 = true;
         if (checkLoaded()) {
             setUp();

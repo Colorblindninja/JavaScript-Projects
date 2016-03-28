@@ -49,8 +49,8 @@ var updateCalendar = function(date) {
         .css("width",100/7+"%")
         .css("height", 100/Math.ceil(daysInMonth(date.getFullYear(), date.getMonth())/7) + "%")
         .css("position", "absolute")
-        .css("left",100/7*i+"%");
-
+        .css("left",100/7*(i%7)+"%");
+        if ()
 
         console.log($("#week"+Math.floor(i/7)));
         $("#week"+Math.floor(i/7)).append(day);
