@@ -1,0 +1,39 @@
+.calendarContainer {
+    width: 68%;
+    height: 90%;
+    border: solid;
+    position: absolute;
+    bottom: 1%;
+    right: 1%;
+}
+
+.day {
+
+}
+
+.eventContainer{
+    width: 29%;
+    height: 90%;
+    border: solid;
+    position: absolute;
+    bottom: 1%;
+    left: 1%;
+}
+
+.event {
+
+}
+
+.date{
+    position: fixed;
+    top: 1%;
+    left: 50%;
+}
+
+.today{
+
+}
+
+.selected{
+
+}
