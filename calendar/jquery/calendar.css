@@ -20,11 +20,18 @@
 }
 
 .event {
+    width: 100%;
+    background-color:  #ffb74d;
+    border: solid;
+    border-width: 1px;
+}
+
+.dayEvent {
 
 }
 
 .date{
-    position: fixed;
+    position: relative;
     top: 1%;
     left: 50%;
 }
@@ -35,4 +42,19 @@
 
 .selected{
 
+}
+
+.next{
+    position: relative;
+    float: left;
+    top: 4%;
+    left: 53%;
+}
+.prev{
+    position: relative;
+    top: 4%;
+    left: 48%;
+}
+.material-icons{
+    font-size: 50px;
 }
