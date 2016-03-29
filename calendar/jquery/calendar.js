@@ -45,16 +45,26 @@ var updateCalendar = function(date) {
     //Make the days
     for (var i = 0; i<daysInMonth(date.getFullYear(), date.getMonth()); i++) {
         var day = $('<div class="day"/>')
+        .attr({
+            id: "day"+(i+1)
+        })
         .text(i+1)
         .css("width",100/7+"%")
         .css("height", 100/Math.ceil(daysInMonth(date.getFullYear(), date.getMonth())/7) + "%")
         .css("position", "absolute")
-        .css("left",100/7*(i%7)+"%");
-        if ()
+        .css("left",100/7*(i%7)+"%")
+        .click(function() {
+            addEvent(new Date(date.getFullYear(),date.getMonth(),Number($(this).attr('id').slice(3)),0,0,0,0))
+        });
 
-        console.log($("#week"+Math.floor(i/7)));
+        console.log(day.attr("id"));
         $("#week"+Math.floor(i/7)).append(day);
     }
+}
+
+var addEvent = function(date) {
+    $("#day"+date.getDate())
+    .text("clicked");
 }
 
 setUp();
