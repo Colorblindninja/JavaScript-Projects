@@ -58,3 +58,10 @@
 .material-icons{
     font-size: 50px;
 }
+.eventDate{
+    width: 100%;
+    background-color:  #ffcc80;
+    border: solid;
+    border-width: 1px;
+    text-align: center;
+}
