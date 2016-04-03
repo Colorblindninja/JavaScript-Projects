@@ -19,7 +19,7 @@ var MONTHS = [
 
 var EVENTS = [];
 
-var OFFSET = 0;
+
 
 var DATE = new Date();
 
@@ -29,17 +29,32 @@ function daysInMonth(year,month) {
 
 var setUp = function() {
     $("#next").click(function() {
-        OFFSET += 1;
-        console.log(OFFSET);
+        console.log("next");
+        if (DATE.getMonth()==11) {
+            DATE = new Date(DATE.getFullYear()+1,0);
+        } else {
+            DATE = new Date(DATE.getFullYear(),DATE.getMonth()+1);
+        }
+        console.log(DATE);
+        updateCalendar(DATE);
+        return false;
     });
     $("#prev").click(function() {
-        OFFSET -= 1;
+        console.log("prev");
+        if (DATE.getMonth()==0) {
+            DATE = new Date(DATE.getFullYear()-1,11);
+        } else {
+            DATE = new Date(DATE.getFullYear(),DATE.getMonth()-1);
+        }
+        console.log(DATE);
+        updateCalendar(DATE);
+        return false;
     });
-    $(".date").text(MONTHS[DATE.getMonth()] + " " + DATE.getFullYear());
     updateCalendar(DATE);
 }
 
 var updateCalendar = function(date) {
+    $(".date").text(MONTHS[DATE.getMonth()] + " " + DATE.getFullYear());
     //Make the Weeks
     $('.calendarContainer').empty();
     for (var i=0;i<daysInMonth(date.getFullYear(), date.getMonth())/7;i++) {
@@ -58,7 +73,7 @@ var updateCalendar = function(date) {
         $("#calendarContainer").append(week);
     }
     //Make the days
-    for (var i = 0; i<daysInMonth(date.getFullYear(), date.getMonth())+date.getDay()-1; i++) {
+    for (var i = 0; i<daysInMonth(date.getFullYear(), date.getMonth())+date.getDay(); i++) {
         var day = $('<div class="day"/>')
         .css("width",100/7+"%")
         .css("height", 95/Math.ceil(daysInMonth(date.getFullYear(), date.getMonth())/7) + "%")
@@ -68,13 +83,13 @@ var updateCalendar = function(date) {
             addEvent(new Date(date.getFullYear(),date.getMonth(),Number($(this).attr('id').slice(3)),0,0,0,0))
         });
         day.css("top", (5+(Number(day.css("height").slice(0,-1))*Math.floor(i/7))) + "%");
-        if (i<date.getDay()-1){
+        if (i<date.getDay()){
             $("#week"+Math.floor(i/7)).append(day);
         } else {
             day.attr({
-                id: "day"+(i+1-date.getDay()+1)
+                id: "day"+(i+1-date.getDay())
             })
-            .text(i+1-date.getDay()+1)
+            .text(i+1-date.getDay())
             $("#week"+Math.floor(i/7)).append(day);
         }
 
@@ -91,13 +106,14 @@ var addEvent = function(date) {
         if (e.keyCode == 13) {
             makeEvent($('#newEvent').val(),date);
             $('#newEvent').remove();
+            updateEventContainer();
+            updateDayEvents();
 
         }
     })
     .click(function (thing){
         thing.stopPropagation();
     });
-
 }
 
 var makeEvent = function(name, date) {
@@ -120,8 +136,6 @@ var makeEvent = function(name, date) {
     // console.log(newEvent);
     // var event = $('<div class="event"/>')
     // .text(newEvent.name);
-    updateEventContainer();
-    updateDayEvents();
     }
 var updateEventContainer = function() {
     //Remake the event view
@@ -141,7 +155,10 @@ var updateEventContainer = function() {
 }
 
 var updateDayEvents = function() {
-    $('.day').remove($('.event'));
+    for (var i=1;i<daysInMonth(DATE.getFullYear(), DATE.getMonth());i++) {
+        $('#day'+i).remove($('.event'));
+    }
+
     for (var i=0;i<EVENTS.length;i++){
         if (EVENTS[i].date.getFullYear() == DATE.getFullYear() && EVENTS[i].date.getMonth() == DATE.getMonth()) {
             $("#day"+EVENTS[i].date.getDate()).append(
