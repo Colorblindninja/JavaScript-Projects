@@ -11,21 +11,44 @@
 
 }
 
-.car {
-    height: 100px;
+.verticalCar {
+    height: 50px;
+    width: 25px;
+    z-index: 100;
+    background: black;
+}
+
+.horizontalCar {
+    height: 25px;
     width: 50px;
     z-index: 100;
     background: black;
 }
 
-.mainCar {
-    height: 100px;
+.verticalMainCar {
+    height: 50px;
+    width: 25px;
+    z-index: 100;
+    background: red;
+}
+
+.horizontalMainCar {
+    height: 25px;
     width: 50px;
     z-index: 100;
     background: red;
 }
 
-.road {
+.verticalRoad {
     z-index: 1;
     background: grey;
+    width: 100px;
+    position: relative;
+}
+
+.horizontalRoad {
+    z-index: 1;
+    background: grey;
+    height: 100px;
+    position: relative;
 }
