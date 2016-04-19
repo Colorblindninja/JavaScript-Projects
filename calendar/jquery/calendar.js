@@ -22,7 +22,7 @@ var EVENTS = [];
 
 
 var DATE = new Date();
-
+var DATE = new Date(DATE.getFullYear(), DATE.getMonth());
 function daysInMonth(year,month) {
     return new Date(year, month+1, 0).getDate();
 }
@@ -37,6 +37,7 @@ var setUp = function() {
         }
         console.log(DATE);
         updateCalendar(DATE);
+        updateDayEvents();
         return false;
     });
     $("#prev").click(function() {
@@ -48,12 +49,14 @@ var setUp = function() {
         }
         console.log(DATE);
         updateCalendar(DATE);
+        updateDayEvents();
         return false;
     });
     updateCalendar(DATE);
 }
 
 var updateCalendar = function(date) {
+    console.log(date);
     $(".date").text(MONTHS[DATE.getMonth()] + " " + DATE.getFullYear());
     //Make the Weeks
     $('.calendarContainer').empty();
@@ -64,7 +67,7 @@ var updateCalendar = function(date) {
         })
         //add a gray background if its an even week
         .css("height", 95/Math.ceil(daysInMonth(date.getFullYear(), date.getMonth())/7) + "%");
-        //.css("position", "relative");
+        //USE MARGIN-TOP
         week.css("top", (5+(Number(week.css("height").slice(0,-1)))*i) + "%");
         console.log(week.css('top'));
         if (i %2 == 0) {
@@ -107,6 +110,7 @@ var addEvent = function(date) {
             makeEvent($('#newEvent').val(),date);
             $('#newEvent').remove();
             updateEventContainer();
+            console.log("update day event is about to be called");
             updateDayEvents();
 
         }
@@ -140,8 +144,7 @@ var makeEvent = function(name, date) {
 var updateEventContainer = function() {
     //Remake the event view
     $(".eventContainer").empty();
-    var lastdate = 0
-    console.log(EVENTS);
+    var lastdate = 0;
     for (var i=0;i<EVENTS.length;i++){
         if (EVENTS[i].date.getTime() > lastdate){
             lastdate = EVENTS[i].date.getTime();
@@ -155,13 +158,19 @@ var updateEventContainer = function() {
 }
 
 var updateDayEvents = function() {
-    for (var i=1;i<daysInMonth(DATE.getFullYear(), DATE.getMonth());i++) {
-        $('#day'+i).remove($('.event'));
-    }
-
+    // for (var i=1;i<daysInMonth(DATE.getFullYear(), DATE.getMonth());i++) {
+    //     $('#day'+i).remove('.event');
+    // }
+    $('.day .event').remove();
+    //console.log(EVENTS);
     for (var i=0;i<EVENTS.length;i++){
+        //console.log(EVENTS[i].date.getMonth(),DATE.getFullYear(),DATE.getMonth());
         if (EVENTS[i].date.getFullYear() == DATE.getFullYear() && EVENTS[i].date.getMonth() == DATE.getMonth()) {
-            $("#day"+EVENTS[i].date.getDate()).append(
+            console.log("Wait does this even happen?");
+            var day = $("#day"+EVENTS[i].date.getDate());
+            console.log("day object", day);
+            day
+            .append(
                 $('<div class="event"/>').text(EVENTS[i].name));
         }
     }
