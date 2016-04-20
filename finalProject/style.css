@@ -16,6 +16,7 @@
     width: 25px;
     z-index: 100;
     background: black;
+    position: absolute;
 }
 
 .horizontalCar {
@@ -23,6 +24,7 @@
     width: 50px;
     z-index: 100;
     background: black;
+    position: absolute;
 }
 
 .verticalMainCar {
@@ -30,6 +32,7 @@
     width: 25px;
     z-index: 100;
     background: red;
+    position: absolute;
 }
 
 .horizontalMainCar {
@@ -37,18 +40,19 @@
     width: 50px;
     z-index: 100;
     background: red;
+    position: absolute;
 }
 
 .verticalRoad {
     z-index: 1;
-    background: grey;
+    background: #846870;
     width: 100px;
-    position: relative;
+    position: absolute;
 }
 
 .horizontalRoad {
     z-index: 1;
-    background: grey;
+    background: #846870;
     height: 100px;
-    position: relative;
+    position: absolute;
 }
