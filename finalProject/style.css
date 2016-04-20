@@ -4,10 +4,21 @@
 }
 
 .quizContainer {
+    width: 30%;
+    height: 95%;
+    border: solid;
+    position: absolute;
+    top: 1%;
+    left: 65%;
+    list-style:none;
 
 }
 
 .question {
+
+}
+
+.replay {
 
 }
 
