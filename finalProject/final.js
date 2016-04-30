@@ -1,5 +1,7 @@
 "use strict";
 
+//add a hint box
+
 var fourWayStop = function() {
 
     $('.sim').empty();
@@ -30,6 +32,8 @@ var fourWayStop = function() {
         .css('background', 'white');
 
     $('.sim').append(horizontalRoad).append(verticalRoad).append(mainCar).append(topCar).append(leftCar).append(rightCar);
+
+    //Randomize the first car to go
 
     mainCar.animate({
         top: "-=150px",
@@ -69,6 +73,8 @@ var fourWayStop = function() {
     $('#replay').click(function(){
         fourWayStop();
     });
+
+    //add a hint: "Which car pulls up first?"
 }
 
 var start = function() {
