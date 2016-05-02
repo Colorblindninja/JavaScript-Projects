@@ -67,3 +67,17 @@
     height: 100px;
     position: absolute;
 }
+
+.twoLaneHorizontalRoad {
+    z-index: 1;
+    background: #846870;
+    height: 125px;
+    position: absolute;
+}
+
+.twoLaneVerticalRoad {
+    z-index: 1;
+    background: #846870;
+    width:125px;
+    position: absolute;
+}

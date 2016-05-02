@@ -66,9 +66,9 @@ var updateCalendar = function(date) {
             id: "week"+i
         })
         //add a gray background if its an even week
-        .css("height", 95/Math.ceil(daysInMonth(date.getFullYear(), date.getMonth())/7) + "%");
+        .css("height", 100/Math.ceil(daysInMonth(date.getFullYear(), date.getMonth())/7) + "%");
         //USE MARGIN-TOP
-        week.css("top", (5+(Number(week.css("height").slice(0,-1)))*i) + "%");
+        week.css("top", ((Number(week.css("height").slice(0,-1)))*i) + "%");
         console.log(week.css('top'));
         if (i %2 == 0) {
             week.css("background-color", "lightgrey");
@@ -79,13 +79,13 @@ var updateCalendar = function(date) {
     for (var i = 0; i<daysInMonth(date.getFullYear(), date.getMonth())+date.getDay(); i++) {
         var day = $('<div class="day"/>')
         .css("width",100/7+"%")
-        .css("height", 95/Math.ceil(daysInMonth(date.getFullYear(), date.getMonth())/7) + "%")
+        .css("height", 100/Math.ceil(daysInMonth(date.getFullYear(), date.getMonth())/7) + "%")
         .css("position", "absolute")
         .css("left",100/7*(i%7)+"%")
         .click(function() {
             addEvent(new Date(date.getFullYear(),date.getMonth(),Number($(this).attr('id').slice(3)),0,0,0,0))
         });
-        day.css("top", (5+(Number(day.css("height").slice(0,-1))*Math.floor(i/7))) + "%");
+        day.css("top", ((Number(day.css("height").slice(0,-1))*Math.floor(i/7))) + "%");
         if (i<date.getDay()){
             $("#week"+Math.floor(i/7)).append(day);
         } else {
